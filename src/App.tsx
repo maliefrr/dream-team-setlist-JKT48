@@ -14,7 +14,7 @@ function App() {
     for (let i = 0; i <= 16; i++) {
       const row = [];
       for (let j = 0; j <= numPlayers; j++) {
-        row.push(<td key={`${i}-${j}`}>{i === 0 && j > 0 ? `Player ${j}` : j === 0 && i > 0 ? `${i}` : i >= 5 && i <= 9 ? <div className='unitsong'></div> : <div className='groupsong'></div>}</td>);
+        row.push(<td key={`${i}-${j}`}>{i === 0 && j > 0 ? <input type="text" name={`Player${j}`} className='form-control' placeholder={`Input nama Player ${j}`}/> : j === 0 && i > 0? `${i}` : i >= 5 && i <= 9 ? <div className='unitsong'></div> : i === 13 ? <div className='encore'></div> : <div className='groupsong'></div>}</td>);
       }
       table.push(<tr key={i}>{row}</tr>);
     }
