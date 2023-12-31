@@ -1,4 +1,4 @@
-// import Member from "./components/Member"
+import Member from "./components/Member"
 import { useState } from 'react';
 import "./style.css"
 
@@ -35,17 +35,21 @@ function App() {
 
   return (
     <>
-    {/* <Member /> */}
+    <Member />
     <div>
         <button
           onClick={() => {
             const input = prompt('Masukkan jumlah pemain:');
-            const num = parseInt(input, 10);
+            const num = parseInt(input as string, 10);
             if (!isNaN(num)) {
               setNumPlayersSetlist(num);
             } else {
               alert('Jumlah pemain harus berupa angka.');
             }
+            if(num > 6) {
+              alert("Player tidak boleh lebih dari 6")
+            }
+            setNumPlayersTeam(0)
           }}
           className='btn btn-primary'
         >
@@ -55,12 +59,16 @@ function App() {
         <button
           onClick={() => {
             const input = prompt('Masukkan jumlah pemain:');
-            const num = parseInt(input, 10);
+            const num = parseInt(input as string, 10);
             if (!isNaN(num)) {
               setNumPlayersTeam(num);
             } else {
               alert('Jumlah pemain harus berupa angka.');
             }
+            if(num > 6) {
+              alert("Player tidak boleh lebih dari 6")
+            }
+            setNumPlayersSetlist(0)
           }}
           className='btn btn-primary'
         >
@@ -68,13 +76,13 @@ function App() {
         </button>
 
 
-        {numPlayersSetlist > 0 && (
+        {numPlayersSetlist > 0 && numPlayersSetlist <= 6 && (
                 <table className='table'>
                   <tbody>{playDreamSetlist()}</tbody>
                 </table>
               )}
 
-        {numPlayersTeam > 0 && (
+        {numPlayersTeam > 0 && numPlayersTeam <= 6 && (
                 <table className='table'>
                   <tbody>{playDreamTeam()}</tbody>
                 </table>
