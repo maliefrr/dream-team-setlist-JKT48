@@ -1,5 +1,6 @@
 import Member from "./components/Member"
 import { useState } from 'react';
+import data from './data/member.json'
 import "./style.css"
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
     for (let i = 0; i <= 16; i++) {
       const row = [];
       for (let j = 0; j <= numPlayersTeam; j++) {
-        row.push(<td key={`${i}-${j}`}>{i === 0 && j > 0 ? <input type="text" name={`Player${j}`} className='form-control' placeholder={`Input nama Player ${j}`}/> : j === 0 && i > 0? `${i}` : <div className='groupsong'></div>}</td>);
+        row.push(<td key={`${i}-${j}`}>{i === 0 && j > 0 ? <input type="text" name={`Player${j}`} className='form-control' placeholder={`Input nama Player ${j}`}/> : j === 0 && i > 0? `${i}` : j === 0 && i === 0 ? <div className='groupsong'></div> : <div className="groupsong"><Member data={data}/></div>}</td>);
       }
       table.push(<tr key={i}>{row}</tr>);
     }
@@ -35,7 +36,6 @@ function App() {
 
   return (
     <>
-    <Member />
     <div>
         <button
           onClick={() => {
